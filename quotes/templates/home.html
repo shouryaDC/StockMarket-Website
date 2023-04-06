@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if ticker %}
+     {{ticker}}
+{% endif %}
+
+
+{% if api %}
+    {% if api == "Error" %}
+        There was a problem with yout ticker symbol
+        please try again...
+    {% else %}
+        {% for dict in api %}
+            <h1>{{dict.companyName}}</h1><br>
+            Price: ${{dict.latestPrice}}<br>
+            Previous Close: {{dict.previousClose}} <br>
+            Market Cap: {{dict.marketCap}}<br>
+            YTD Change: {{dict.ytdChange}}<br>
+            52WK High: {{dict.week52High}}<br>
+            52W WK Low: {{dict.week52Low}}<br>
+            
+        {% endfor %}
+    {% endif %}
+{% endif %}
+
+{% endblock %}
